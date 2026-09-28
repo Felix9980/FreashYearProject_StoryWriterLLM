@@ -1,0 +1,19 @@
+[project]
+name = "lee-huan-stories"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "accelerate>=1.14.0",
+    "bitsandbytes>=0.49.2",
+    "django>=6.0.7",
+    "gradio>=6.19.0",
+    "numpy>=2.5.0",
+    "peft>=0.19.1",
+    "sentencepiece>=0.2.1",
+    "thread>=2.0.6",
+    "tiktoken>=0.13.0",
+    "torch>=2.12.1",
+    "transformers>=5.12.1",
+]

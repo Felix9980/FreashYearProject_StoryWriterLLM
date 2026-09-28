@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登入 · 《狸幻的世界》創作工坊</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', '"Noto Sans TC"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    boxShadow: {
+                        'glass': '0 25px 50px -12px rgba(99, 102, 241, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.9) inset, 0 10px 30px -5px rgba(0, 0, 0, 0.04)',
+                        'glow-indigo': '0 0 25px -3px rgba(99, 102, 241, 0.4)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* 🌌 背景緩動動態極光光暈 (Floating Aurora Effect) */
+        .aurora-canvas {
+            background-color: #f8fafc;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .aurora-blob {
+            position: absolute;
+            filter: blur(75px);
+            opacity: 0.6;
+            pointer-events: none;
+            animation: floatGlow 18s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .blob-1 {
+            top: -10%;
+            left: 20%;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(129, 140, 248, 0.5) 0%, rgba(199, 210, 254, 0.1) 70%);
+            animation-duration: 16s;
+        }
+
+        .blob-2 {
+            bottom: -10%;
+            right: 15%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(244, 114, 182, 0.35) 0%, rgba(254, 215, 170, 0.2) 70%);
+            animation-duration: 20s;
+            animation-delay: -4s;
+        }
+
+        .blob-3 {
+            top: 40%;
+            left: 10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.4) 0%, rgba(167, 139, 250, 0.15) 70%);
+            animation-duration: 18s;
+            animation-delay: -8s;
+        }
+
+        @keyframes floatGlow {
+            0% { transform: translate(0px, 0px) scale(1) rotate(0deg); }
+            50% { transform: translate(50px, 35px) scale(1.1) rotate(10deg); }
+            100% { transform: translate(-30px, 60px) scale(0.95) rotate(-5deg); }
+        }
+
+        /* 🪟 卡片彈性進場與浮空特效 */
+        @keyframes cardPop {
+            0% {
+                opacity: 0;
+                transform: scale(0.92) translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        .animate-card {
+            animation: cardPop 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* ✨ 流光 Shimmer 按鈕動效 */
+        .shimmer-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                60deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.35) 50%,
+                transparent 70%
+            );
+            transform: rotate(30deg) translateX(-100%);
+            transition: transform 0.8s ease;
+        }
+        .shimmer-btn:hover::after {
+            transform: rotate(30deg) translateX(100%);
+        }
+
+        /* 💫 浮動微光徽章 */
+        @keyframes subtlePulse {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+        .animate-float-icon {
+            animation: subtlePulse 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="aurora-canvas text-slate-800 flex items-center justify-center min-h-screen p-4 antialiased selection:bg-indigo-500 selection:text-white font-sans">
+    
+    <!-- 🌌 背景動態極光球 -->
+    <div class="blob-1 aurora-blob"></div>
+    <div class="blob-2 aurora-blob"></div>
+    <div class="blob-3 aurora-blob"></div>
+
+    <!-- 登入玻璃卡片 -->
+    <div class="bg-white/80 backdrop-blur-2xl p-8 md:p-9 rounded-3xl shadow-glass w-full max-w-sm border border-white/90 animate-card relative z-10">
+        
+        <!-- 頂部品牌標識 -->
+        <div class="text-center mb-8">
+            <div class="animate-float-icon inline-block mb-3.5">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-500 via-indigo-600 to-violet-500 text-white flex items-center justify-center shadow-glow-indigo group transition-transform duration-300 hover:scale-105">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                </div>
+            </div>
+            <h2 class="text-lg font-bold text-slate-900 tracking-tight">狸幻的世界</h2>
+            <div class="inline-flex items-center gap-1.5 mt-1 px-2.5 py-0.5 rounded-full bg-indigo-50/80 border border-indigo-100/80">
+                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></span>
+                <span class="text-[10px] text-indigo-700 font-mono font-semibold tracking-wider uppercase">CREATIVE STUDIO</span>
+            </div>
+        </div>
+
+        <!-- 登入表單 -->
+        <form method="POST">
+            {% csrf_token %}
+            <div class="space-y-4">
+                {% for field in form %}
+                <div>
+                    <label class="block text-[11px] font-bold text-slate-600 mb-1.5 uppercase tracking-wider font-mono">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}
+                        <p class="text-rose-500 text-xs mt-1.5 flex items-center gap-1 font-medium animate-pulse">
+                            <span>⚠</span> {{ field.errors.as_text }}
+                        </p>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            
+            <button type="submit" class="shimmer-btn w-full mt-7 bg-gradient-to-r from-indigo-600 via-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 active:scale-[0.98] text-white font-bold py-3 rounded-2xl text-xs tracking-wide shadow-glow-indigo transition-all duration-200 flex items-center justify-center gap-2">
+                <span>確認登入</span>
+                <span class="text-xs">✨</span>
+            </button>
+        </form>
+
+        <!-- 底部註冊連結 -->
+        <div class="mt-7 text-center text-xs text-slate-400">
+            還沒有帳號？ <a href="{% url 'register' %}" class="text-indigo-600 hover:text-indigo-800 font-semibold underline underline-offset-4 decoration-indigo-200 hover:decoration-indigo-500 transition-all">立即建立身分</a>
+        </div>
+    </div>
+
+    <script>
+        // 賦予 Django input 微光漸變與聚焦動效
+        document.querySelectorAll('input').forEach(el => {
+            el.className = "w-full bg-slate-50/80 hover:bg-white focus:bg-white border border-slate-200/90 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 rounded-2xl px-4 py-3 text-xs text-slate-800 placeholder-slate-400 focus:outline-none transition-all duration-200 shadow-inner";
+        });
+    </script>
+</body>
+</html>
